@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
