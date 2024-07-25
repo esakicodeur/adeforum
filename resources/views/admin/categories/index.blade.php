@@ -15,25 +15,27 @@
                         <x-table.head>Id</x-table.head>
                         <x-table.head>Nom</x-table.head>
                         <x-table.head>Slug</x-table.head>
-                        <x-table.head class="text-center">Créé à</x-table.head>
+                        <x-table.head class="text-center">Créé le</x-table.head>
                     </tr>
                 </thead>
 
                 <tbody class="divide-y divide-gray-200 divide-solid">
-                    <tr>
-                        <x-table.data>
-                            <div>1</div>
-                        </x-table.data>
-                        <x-table.data>
-                            <div>Category Name</div>
-                        </x-table.data>
-                        <x-table.data>
-                            <div>category-name</div>
-                        </x-table.data>
-                        <x-table.data>
-                            <div class="text-center">2005-14-06</div>
-                        </x-table.data>
-                    </tr>
+                    @foreach ($categories as $category)
+                        <tr>
+                            <x-table.data>
+                                <div>{{ $category->id }}</div>
+                            </x-table.data>
+                            <x-table.data>
+                                <div>{{ $category->name }}</div>
+                            </x-table.data>
+                            <x-table.data>
+                                <div>{{ $category->slug }}</div>
+                            </x-table.data>
+                            <x-table.data>
+                                <div class="text-center">{{ $category->created_at }}</div>
+                            </x-table.data>
+                        </tr>
+                    @endforeach
                 </tbody>
 
             </table>
