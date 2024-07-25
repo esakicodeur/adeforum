@@ -19,7 +19,7 @@
                 <div class="p-2 text-white bg-blue-200 border rounded-l">
                     <x-heroicon-o-search class="w-6 h-6" />
                 </div>
-                <input type="search" name="" id="" class="w-full border-none rounded-r shadow-inner bg-blue-50 focus:ring-blue-200" placeholder="Search Topics">
+                <input type="search" name="" id="" class="w-full border-none rounded-r shadow-inner bg-blue-50 focus:ring-blue-200" placeholder="Sujets de recherche">
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -49,11 +49,11 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Gérer son compte') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Profil') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -79,11 +79,11 @@
                 @else
                 <div class="space-x-4">
                     <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                        {{ __('Login') }}
+                        {{ __('Se connecter') }}
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                        {{ __('Register') }}
+                        {{ __('S\'inscrire') }}
                     </x-jet-nav-link>
                 </div>
 
@@ -129,7 +129,7 @@
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    {{ __('Profil') }}
                 </x-jet-responsive-nav-link>
 
 
@@ -139,7 +139,7 @@
 
                     <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
                                     this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Se déconnecter') }}
                     </x-jet-responsive-nav-link>
                 </form>
 
@@ -149,12 +149,12 @@
 
                 <!-- Login -->
                 <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                    {{ __('Login') }}
+                    {{ __('Se connecter') }}
                 </x-jet-responsive-nav-link>
 
                 <!-- Registration -->
                 <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                    {{ __('Register') }}
+                    {{ __('S\'inscrire') }}
                 </x-jet-responsive-nav-link>
 
             </div>

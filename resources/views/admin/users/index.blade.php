@@ -12,11 +12,11 @@
             <table class="min-w-full">
                 <thead class="bg-blue-500">
                     <tr>
-                        <x-table.head>Name</x-table.head>
-                        <x-table.head>Bio</x-table.head>
-                        <x-table.head>Birthday</x-table.head>
-                        <x-table.head class="text-center">Role</x-table.head>
-                        <x-table.head class="text-center">Joined Date</x-table.head>
+                        <x-table.head>Nom</x-table.head>
+                        <x-table.head>Biographie</x-table.head>
+                        <x-table.head>Anniversaire</x-table.head>
+                        <x-table.head class="text-center">Rôle</x-table.head>
+                        <x-table.head class="text-center">Date d'adhésion</x-table.head>
                     </tr>
                 </thead>
 

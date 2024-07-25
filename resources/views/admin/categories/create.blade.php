@@ -3,7 +3,7 @@
     {{-- Header --}}
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight">
-            {{ __('Categories: Create') }}
+            {{ __('Catégories : Créer') }}
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
 
                     {{-- Button --}}
                     <x-buttons.primary>
-                        {{ __('Create') }}
+                        {{ __('Créer') }}
                     </x-buttons.primary>
             </x-form>
         </div>

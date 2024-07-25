@@ -4,7 +4,7 @@
         <x-partials.sidenav />
 
         <section class="flex flex-col col-span-3 gap-y-4">
-            <small class="text-sm text-gray-400">category>discussion>topic</small>
+            <small class="text-sm text-gray-400">catégorie > discussion > sujet</small>
 
             <article class="p-5 bg-white shadow">
                 <div class="grid grid-cols-8">
@@ -39,14 +39,14 @@
                             {{-- Date Posted --}}
                             <div class="flex items-center text-xs text-gray-500">
                                 <x-heroicon-o-clock class="w-4 h-4 mr-1" />
-                                Posted: 4hours Ago
+                                Publié: il y a 4 heures
                             </div>
 
 
                             {{-- Reply --}}
                             <a href="" class="flex items-center space-x-2 text-gray-500">
                                 <x-heroicon-o-reply class="w-5 h-5" />
-                                <span class="text-sm">Reply</span>
+                                <span class="text-sm">Répondre</span>
                             </a>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                             {{-- Date Posted --}}
                             <div class="flex items-center text-xs text-gray-500">
                                 <x-heroicon-o-clock class="w-4 h-4 mr-1" />
-                                Replied: 2 mintues ago
+                                A répondu : il y a 2 minutes
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
             </div>
 
             <div class="p-5 space-y-4 bg-white shadow">
-                <h2 class="text-gray-500">Post a reply</h2>
+                <h2 class="text-gray-500">Poster une réponse</h2>
                 <x-trix name="about" styling="bg-gray-100 shadow-inner h-40" />
             </div>
         </section>

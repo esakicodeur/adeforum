@@ -3,7 +3,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 {{-- Social Meta --}}
-<x-social-meta title="Hello World" description="Blade components are awesome!" image="http://example.com/social.jpg" />
+<x-social-meta title="Hello World" description="Les composants de la lame sont géniaux !" image="http://example.com/social.jpg" />
 
 {{-- Title --}}
 <title>{{ config('app.name', 'Forum') }}</title>

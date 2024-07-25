@@ -3,7 +3,7 @@
     {{-- Header --}}
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight">
-            {{ __('Categories') }}
+            {{ __('Catégories') }}
         </h2>
     </x-slot>
 
@@ -13,9 +13,9 @@
                 <thead class="bg-blue-500">
                     <tr>
                         <x-table.head>Id</x-table.head>
-                        <x-table.head>Name</x-table.head>
+                        <x-table.head>Nom</x-table.head>
                         <x-table.head>Slug</x-table.head>
-                        <x-table.head class="text-center">Created At</x-table.head>
+                        <x-table.head class="text-center">Créé à</x-table.head>
                     </tr>
                 </thead>
 
