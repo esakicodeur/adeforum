@@ -18,6 +18,12 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    const DEFAULT = 1;
+    const MODERATOR = 2;
+    const ADMIN = 3;
+
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +33,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'bio',
+        'type',
     ];
 
     /**
@@ -58,4 +66,25 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function type(): int
+    {
+        return (int) $this->type;
+    }
+
+    public function isModerator(): bool
+    {
+        return $this->type() === self::MODERATOR;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->type() === self::ADMIN;
+    }
+
+    public function email(): string
+    {
+        return $this->email;
+    }
+
 }
