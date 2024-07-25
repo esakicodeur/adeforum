@@ -19,24 +19,26 @@
             </div>
         </div>
 
+        @if (auth()->user()->isAdmin())
         {{-- Categories --}}
         <div>
             <x-sidenav.title>
                 {{ __('Catégories') }}
             </x-sidenav.title>
             <div>
-                <x-sidenav.link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+                <x-sidenav.link href="{{ route('admin.categories.index') }}" :active="request()->routeIs('admin.categories.index')">
                     <x-zondicon-view-tile class="w-3 text-green-400" />
                     <span>{{ __('Index') }}</span>
                 </x-sidenav.link>
             </div>
             <div>
-                <x-sidenav.link href="{{ route('categories.create') }}" :active="request()->routeIs('categories.create')">
+                <x-sidenav.link href="{{ route('admin.categories.create') }}" :active="request()->routeIs('admin.categories.create')">
                     <x-zondicon-compose class="w-3 text-green-400" />
                     <span>{{ __('Créer') }}</span>
                 </x-sidenav.link>
             </div>
         </div>
+        @endif
 
         {{-- Threads --}}
         <div>

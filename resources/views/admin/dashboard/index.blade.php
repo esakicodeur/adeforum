@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-indigo-800 overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="bg-indigo-100 overflow-hidden shadow-xl sm:rounded-lg">
                 Admin pages
             </div>
         </div>
