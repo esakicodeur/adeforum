@@ -15,6 +15,8 @@ use App\Http\Controllers\Pages\HomeController;
 |
 */
 
+require 'admin.php';
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/category/discussion/topic', [PageController::class, 'single'])->name('single');
