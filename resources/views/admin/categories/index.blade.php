@@ -33,7 +33,7 @@
                                 <div>{{ $category->slug }}</div>
                             </x-table.data>
                             <x-table.data>
-                                <div class="text-center">{{ $category->created_at }}</div>
+                                <div class="text-center">{{ $category->createdAt() }}</div>
                             </x-table.data>
                             <x-table.data>
                                 <div class="flex justify-center space-x-4">
