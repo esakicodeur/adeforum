@@ -67,11 +67,6 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function type(): int
-    {
-        return (int) $this->type;
-    }
-
     public function isModerator(): bool
     {
         return $this->type() === self::MODERATOR;
@@ -82,9 +77,28 @@ class User extends Authenticatable
         return $this->type() === self::ADMIN;
     }
 
-    public function email(): string
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function emailAddress(): string
     {
         return $this->email;
     }
 
+    public function bio(): string
+    {
+        return $this->bio;
+    }
+
+    public function type(): int
+    {
+        return (int) $this->type;
+    }
 }
