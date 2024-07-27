@@ -38,15 +38,6 @@ class ThreadController extends Controller
 
     public function store(ThreadStoreRequest $request)
     {
-        $thread = new Thread;
-        $thread->title = $request->title;
-        $thread->slug = Str::slug($request->title);
-        $thread->body = Purifier::clean($request->body);
-        $thread->category_id = $request->category;
-        $thread->author_id = Auth::id();
-        $thread->save();
-        $thread->syncTags($request->tags);
-
         return redirect()->route('threads.index')->with('success', 'Sujet créé !');
     }
 
