@@ -45,13 +45,14 @@
                                             <option value="{{ $tag->id() }}">{{ $tag->name() }}</option>
                                         @endforeach
                                     </select>
-                                    <x-form.error for="tag" />
+                                    <x-form.error for="tags" />
                                 </div>
 
                                 {{-- Body --}}
                                 <div>
                                     <x-form.label for="body" value="{{ __('Description') }}" />
                                     <x-trix name="body" styling="shadow-inner bg-gray-100" />
+                                    <x-form.error for="body" />
                                 </div>
 
                                 {{-- Button --}}
