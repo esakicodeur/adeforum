@@ -24,4 +24,14 @@ class Category extends Model
     {
         return $this->created_at->format('d-m-Y');
     }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function slug(): string
+    {
+        return $this->slug;
+    }
 }

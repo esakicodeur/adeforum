@@ -44,6 +44,11 @@ class Thread extends Model
         return $this->title;
     }
 
+    public function slug(): string
+    {
+        return $this->slug;
+    }
+
     public function body(): string
     {
         return $this->body;
