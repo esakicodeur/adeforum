@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pages;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
 use App\Http\Requests\ThreadStoreRequest;
+use App\Jobs\CreateThread;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Thread;
@@ -38,6 +39,8 @@ class ThreadController extends Controller
 
     public function store(ThreadStoreRequest $request)
     {
+        $this->dispatchSync(CreateThread::fromRequest($request));
+
         return redirect()->route('threads.index')->with('success', 'Sujet créé !');
     }
 

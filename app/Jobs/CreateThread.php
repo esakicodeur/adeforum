@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Http\Requests\ThreadStoreRequest;
+use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -10,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Str;
 
 class CreateThread implements ShouldQueue
 {
@@ -51,8 +53,19 @@ class CreateThread implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): Thread
     {
+        $thread = new Thread([
+            'title' => $this->title,
+            'slug' => Str::slug($this->title),
+            'body' => $this->body,
+            'category_id' => $this->category,
+        ]);
 
+        $thread->authoredBy($this->author);
+        $thread->syncTags($this->tags);
+        $thread->save();
+
+        return $thread;
     }
 }
