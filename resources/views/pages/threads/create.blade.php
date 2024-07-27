@@ -16,7 +16,7 @@
 
                     {{-- Create --}}
                     <div class="col-span-7 space-y-6">
-                        <x-form action="#">
+                        <x-form action="{{ route('threads.store') }}">
                             <div class="space-y-8">
                                 {{-- Title --}}
                                 <div>
@@ -39,7 +39,7 @@
 
                                 {{-- Tag --}}
                                 <div>
-                                    <x-form.label for="tag" value="{{ __('Tag') }}" />
+                                    <x-form.label for="tag" value="{{ __('Tags') }}" />
                                     <select name="tags[]" id="tags" x-data="{}" x-init="function () { choices($el) }" class="w-full text-sm border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" multiple>
                                         @foreach ($tags as $tag)
                                             <option value="{{ $tag->id() }}">{{ $tag->name() }}</option>
@@ -51,7 +51,7 @@
                                 {{-- Body --}}
                                 <div>
                                     <x-form.label for="body" value="{{ __('Description') }}" />
-                                    <x-trix name="about" styling="shadow-inner bg-gray-100" />
+                                    <x-trix name="body" styling="shadow-inner bg-gray-100" />
                                 </div>
 
                                 {{-- Button --}}
