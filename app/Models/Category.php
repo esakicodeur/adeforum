@@ -25,6 +25,11 @@ class Category extends Model
         return $this->created_at->format('d-m-Y');
     }
 
+    public function id(): int
+    {
+        return $this->id;
+    }
+
     public function name(): string
     {
         return $this->name;

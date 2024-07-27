@@ -23,4 +23,19 @@ class Tag extends Model
     {
         return $this->morphedByMany(Thread::class, 'taggable');
     }
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function slug(): string
+    {
+        return $this->slug;
+    }
 }
