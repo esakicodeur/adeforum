@@ -14,9 +14,24 @@
 
 <!-- Styles -->
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+/>
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
+<!-- Include Choices JavaScript (latest) -->
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+    // Create multiselect element
+    window.choices = (element) => {
+        return new Choices(element, {
+            maxItemCount: 3,
+            removeItemButton: true,
+        });
+    }
+</script>
 
 {{-- Livewire --}}
 <livewire:styles />

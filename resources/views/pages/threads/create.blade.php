@@ -40,8 +40,7 @@
                                 {{-- Tag --}}
                                 <div>
                                     <x-form.label for="tag" value="{{ __('Tag') }}" />
-                                    <select name="tag" id="tag" class="w-full text-sm border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                                        <option value="">Choisir un tag</option>
+                                    <select name="tags[]" id="tags" x-data="{}" x-init="function () { choices($el) }" class="w-full text-sm border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" multiple>
                                         @foreach ($tags as $tag)
                                             <option value="{{ $tag->id() }}">{{ $tag->name() }}</option>
                                         @endforeach
