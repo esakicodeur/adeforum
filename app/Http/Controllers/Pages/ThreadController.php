@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
 use App\Http\Requests\ThreadStoreRequest;
 use App\Jobs\CreateThread;
+use App\Jobs\UpdateThread;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Thread;
@@ -66,9 +67,13 @@ class ThreadController extends Controller
         ]);
     }
 
-    public function update(Request $request, Thread $thread)
+    public function update(ThreadStoreRequest $request, Thread $thread)
     {
-        //
+        $this->authorize(ThreadPolicy::UPDATE, $thread);
+
+        $this->dispatchSync(UpdateThread::fromRequest($thread, $request));
+
+        return redirect()->route('threads.index')->with('success', 'Sujet modifié !');
     }
 
     public function destroy(Thread $thread)
