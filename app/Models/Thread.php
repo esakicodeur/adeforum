@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ReplyAble;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use App\Traits\HasTags;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
-class Thread extends Model
+class Thread extends Model implements ReplyAble
 {
     use HasFactory;
     use HasTags;
@@ -44,6 +45,21 @@ class Thread extends Model
     public function excerpt(int $limit = 250): string
     {
         return Str::limit(strip_tags($this->body()), $limit);
+    }
+
+    public function subject(): string
+    {
+
+    }
+
+    public function replyAbleSubject(): string
+    {
+        return $this->title();
+    }
+
+    public function id(): int
+    {
+        return $this->id;
     }
 
     public function title(): string

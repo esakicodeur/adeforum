@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Mews\Purifier\Facades\Purifier;
 
 class CreateReply implements ShouldQueue
 {
@@ -19,7 +20,7 @@ class CreateReply implements ShouldQueue
 
     private $body;
     private $author;
-    private $replyable;
+    private $replyAble;
 
     /**
      * Create a new job instance.
@@ -38,7 +39,7 @@ class CreateReply implements ShouldQueue
         return new static(
             $request->body(),
             $request->author(),
-            $request->replyAble(),
+            $request->replyAble()
         );
     }
 
@@ -49,8 +50,10 @@ class CreateReply implements ShouldQueue
      */
     public function handle(): Reply
     {
-        $reply = new Reply(['body' => $this->body]);
-        $reply->isAuthoredBy($this->author);
+        $reply = new Reply([
+            'body' => Purifier::clean($this->body)
+        ]);
+        $reply->authoredBy($this->author);
         $reply->to($this->replyAble);
         $reply->save();
 

@@ -4,6 +4,8 @@
         <x-partials.sidenav />
 
         <section class="flex flex-col col-span-3 gap-y-4">
+            <x-alerts.main />
+
             <small class="text-sm text-gray-400">Sujets > {{ $category->name() }} > {{ $thread->title() }}</small>
 
             <article class="p-5 bg-white shadow">
@@ -53,34 +55,41 @@
             </article>
 
             {{-- Replies --}}
+            <div class="mt-6 space-y-5">
+                <h2 class="mb-0 text-sm font-bold uppercase">Réponses</h2>
+                <hr>
 
-            <div class="p-5 space-y-4 text-gray-500 bg-white border-l border-blue-300 shadow">
-                <div class="grid grid-cols-8">
-                    <button class="flex items-center text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
-                        {{-- <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" /> --}}
-                        <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/avatars/person4.jpg') }}" alt="Person One" />
-                    </button>
-                    <div class="col-span-7 space-y-4">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tenetur alias maiores, sequi magni nam incidunt a beatae veritatis animi suscipit omnis ipsam, accusantium vitae impedit vero molestiae nostrum illo perspiciatis rerum? Recusandae dicta cumque nulla officiis explicabo aliquid nobis? Consectetur dicta fugiat quas amet corporis facere possimus asperiores harum?
-                        </p>
-                        <div class="flex justify-between">
-                            {{-- Likes --}}
-                            <div class="flex space-x-5 text-gray-500">
-                                <a href="" class="flex items-center space-x-2">
-                                    <x-heroicon-o-heart class="w-5 h-5 text-red-300" />
-                                    <span class="text-xs font-bold">30</span>
-                                </a>
+                @foreach ($thread->replies() as $reply)
+                    <div class="p-5 space-y-4 text-gray-500 bg-white border-l border-blue-300 shadow">
+                        <div class="grid grid-cols-8">
+                            {{-- Avatar --}}
+                            <div class="col-span-1">
+                                <x-user.avatar :user="$reply->author()" />
                             </div>
 
-                            {{-- Date Posted --}}
-                            <div class="flex items-center text-xs text-gray-500">
-                                <x-heroicon-o-clock class="w-4 h-4 mr-1" />
-                                A répondu : il y a 2 minutes
+                            <div class="col-span-7 space-y-4">
+                                <p>
+                                    {!! $reply->body() !!}
+                                </p>
+                                <div class="flex justify-between">
+                                    {{-- Likes --}}
+                                    <div class="flex space-x-5 text-gray-500">
+                                        <a href="" class="flex items-center space-x-2">
+                                            <x-heroicon-o-heart class="w-5 h-5 text-red-300" />
+                                            <span class="text-xs font-bold">30</span>
+                                        </a>
+                                    </div>
+
+                                    {{-- Date Posted --}}
+                                    <div class="flex items-center text-xs text-gray-500">
+                                        <x-heroicon-o-clock class="w-4 h-4 mr-1" />
+                                        A répondu : {{ $reply->created_at->diffForHumans() }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
 
             @auth
@@ -88,13 +97,16 @@
                     <h2 class="text-gray-500">Poster une réponse</h2>
                     <x-form action="{{ route('replies.store') }}">
                         <div>
-                            <x-trix name="about" styling="bg-gray-100 shadow-inner h-40" />
+                            <x-trix name="body" styling="bg-gray-100 shadow-inner h-40" />
                             <x-form.error for="body" />
                         </div>
 
-                        <div class="grid">
+                        <input type="hidden" name="replyable_id" value="{{ $thread->id() }}">
+                        <input type="hidden" name="replyable_type" value="threads">
+
+                        <div class="grid mt-4">
                             {{-- Button --}}
-                            <x-buttons.primary class="justify-self-end mt-4">
+                            <x-buttons.primary class="justify-self-end">
                                 {{ __('Commenter') }}
                             </x-buttons.primary>
                         </div>

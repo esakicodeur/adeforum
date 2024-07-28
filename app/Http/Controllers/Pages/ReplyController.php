@@ -23,5 +23,7 @@ class ReplyController extends Controller
         $this->authorize(ReplyPolicy::CREATE, Reply::class);
 
         $this->dispatchSync(CreateReply::fromRequest($request));
+
+        return back()->with('success', 'J\'ai commenté !');
     }
 }

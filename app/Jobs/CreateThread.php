@@ -12,6 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
+use Mews\Purifier\Facades\Purifier;
 
 class CreateThread implements ShouldQueue
 {
@@ -58,7 +59,7 @@ class CreateThread implements ShouldQueue
         $thread = new Thread([
             'title' => $this->title,
             'slug' => Str::slug($this->title),
-            'body' => $this->body,
+            'body' => Purifier::clean($this->body),
             'category_id' => $this->category,
         ]);
 
