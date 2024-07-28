@@ -51,7 +51,7 @@ class ThreadController extends Controller
 
     public function edit(Thread $thread)
     {
-        //
+        return view('pages.threads.edit', compact('thread'));
     }
 
     public function update(Request $request, Thread $thread)

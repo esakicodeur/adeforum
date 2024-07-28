@@ -59,5 +59,13 @@
             </div>
         </div>
 
+        @can(App\Policies\ThreadPolicy::UPDATE, $thread)
+            {{-- Edit Button --}}
+            <div class="absolute right-2 bottom-1">
+                <x-links.secondary href="{{ route('threads.edit', $thread->slug()) }}">
+                    Modifier
+                </x-links.secondary>
+            </div>
+        @endcan
     </div>
 </article>
