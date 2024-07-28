@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasAuthor;
+use App\Traits\HasReplies;
 use App\Traits\HasTags;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +16,7 @@ class Thread extends Model
     use HasFactory;
     use HasTags;
     use HasAuthor;
+    use HasReplies;
 
     protected $fillable = [
         'title',
