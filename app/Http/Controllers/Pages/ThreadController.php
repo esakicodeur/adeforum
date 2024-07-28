@@ -75,9 +75,4 @@ class ThreadController extends Controller
 
         return redirect()->route('threads.index')->with('success', 'Sujet modifié !');
     }
-
-    public function destroy(Thread $thread)
-    {
-        //
-    }
 }
