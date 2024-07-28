@@ -13,4 +13,9 @@ class ReplyController extends Controller
     {
         return $this->middleware([Authenticate::class, EnsureEmailIsVerified::class]);
     }
+
+    public function store(Request $request)
+    {
+        return $request;
+    }
 }

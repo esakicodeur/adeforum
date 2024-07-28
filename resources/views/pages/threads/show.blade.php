@@ -83,10 +83,29 @@
                 </div>
             </div>
 
-            <div class="p-5 space-y-4 bg-white shadow">
-                <h2 class="text-gray-500">Poster une réponse</h2>
-                <x-trix name="about" styling="bg-gray-100 shadow-inner h-40" />
-            </div>
+            @auth
+                <div class="p-5 space-y-4 bg-white shadow">
+                    <h2 class="text-gray-500">Poster une réponse</h2>
+                    <x-form action="{{ route('replies.store') }}">
+                        <div>
+                            <x-trix name="about" styling="bg-gray-100 shadow-inner h-40" />
+                            <x-form.error for="body" />
+                        </div>
+
+                        <div class="grid">
+                            {{-- Button --}}
+                            <x-buttons.primary class="justify-self-end mt-4">
+                                {{ __('Commenter') }}
+                            </x-buttons.primary>
+                        </div>
+                    </x-form>
+                </div>
+            @else
+                <div class="flex justify-between p-4 text-gray-500 bg-blue-200 rounded">
+                    <h2>Merci de vous connecter pour laisser un commentaire.</h2>
+                    <a href="{{ route('login') }}">Se connecter</a>
+                </div>
+            @endauth
         </section>
     </main>
 </x-guest-layout>
