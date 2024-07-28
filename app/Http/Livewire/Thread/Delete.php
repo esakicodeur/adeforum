@@ -3,9 +3,13 @@
 namespace App\Http\Livewire\Thread;
 
 use Livewire\Component;
+use App\Policies\ThreadPolicy;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Delete extends Component
 {
+    use AuthorizesRequests;
+
     public $thread;
     public $confirmingThreadDeletion = false;
 
@@ -18,8 +22,8 @@ class Delete extends Component
 
     public function deleteThread()
     {
+        $this->authorize(ThreadPolicy::DELETE, $this->thread);
         $this->thread->delete();
-
         session()->flash('success', 'Sujet supprimé !');
 
         return redirect()->route('threads.index');

@@ -69,7 +69,7 @@
                 @endcan
 
                 @can(App\Policies\ThreadPolicy::DELETE, $thread)
-                    <livewire:thread.delete />
+                    <livewire:thread.delete :thread="$thread" :key="$thread->id()" />
                 @endcan
             </div>
         </div>
