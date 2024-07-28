@@ -9,6 +9,7 @@ use App\Jobs\CreateThread;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Thread;
+use App\Policies\ThreadPolicy;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +52,18 @@ class ThreadController extends Controller
 
     public function edit(Thread $thread)
     {
-        return view('pages.threads.edit', compact('thread'));
+        $this->authorize(ThreadPolicy::UPDATE, $thread);
+
+        $oldTags = $thread->tags()->pluck('id')->toArray();
+        $selectedCategory = $thread->category;
+
+        return view('pages.threads.edit', [
+            'thread' => $thread,
+            'tags' => Tag::all(),
+            'oldTags' => $oldTags,
+            'categories' => Category::all(),
+            'selectedCategory' => $selectedCategory,
+        ]);
     }
 
     public function update(Request $request, Thread $thread)

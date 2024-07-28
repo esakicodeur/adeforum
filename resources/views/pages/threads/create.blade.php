@@ -4,7 +4,7 @@
         <x-partials.sidenav />
 
         <section class="flex flex-col col-span-3 gap-y-4">
-            <small class="text-sm text-gray-400">discussion > créer</small>
+            <small class="text-sm text-gray-400">Sujets > créer</small>
 
             <article class="p-5 bg-white shadow">
                 <div class="grid grid-cols-8">
