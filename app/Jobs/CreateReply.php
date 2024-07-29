@@ -12,7 +12,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Mews\Purifier\Facades\Purifier;
 
 class CreateReply implements ShouldQueue
 {
@@ -51,7 +50,7 @@ class CreateReply implements ShouldQueue
     public function handle(): Reply
     {
         $reply = new Reply([
-            'body' => Purifier::clean($this->body)
+            'body' => $this->body
         ]);
         $reply->authoredBy($this->author);
         $reply->to($this->replyAble);
