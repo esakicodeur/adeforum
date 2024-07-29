@@ -40,11 +40,17 @@
                 </div>
             </div>
 
-            @can(App\Policies\ReplyPolicy::UPDATE, App\Models\Reply::find($replyId))
-                <x-links.secondary x-on:click="editReply = true; $nextTick(() => focus())" class="absolute cursor-pointer top-2 right-2">
-                    {{ __('Modifier') }}
-                </x-links.secondary>
-            @endcan
+            <div class="absolute flex top-2 right-2 space-x-2">
+                @can(App\Policies\ReplyPolicy::UPDATE, App\Models\Reply::find($replyId))
+                    <x-links.secondary x-on:click="editReply = true; $nextTick(() => focus())" class="cursor-pointer">
+                        {{ __('Modifier') }}
+                    </x-links.secondary>
+                @endcan
+
+                @can(App\Policies\ReplyPolicy::DELETE, App\Models\Reply::find($replyId))
+                    <livewire:reply.delete :replyId="$replyId" :wire:key="$replyId" :page="request()->fullUrl()" />
+                @endcan
+            </div>
         </div>
 
         <div x-show="editReply">

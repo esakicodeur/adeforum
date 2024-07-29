@@ -17,6 +17,8 @@ class Update extends Component
     public $author;
     public $createdAt;
 
+    protected $listeners = ['deleteReply'];
+
     public function mount(Reply $reply)
     {
         $this->replyId = $reply->id();
@@ -43,6 +45,12 @@ class Update extends Component
     {
         $this->replyOrigBody = $reply->body();
         $this->replyNewBody = $this->replyOrigBody;
+    }
+
+    public function deleteReply($page)
+    {
+        session()->flash('success', 'Réponse supprimée !');
+        return redirect()->to($page);
     }
 
     public function render()
