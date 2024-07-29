@@ -17,7 +17,9 @@ class Reply extends Model
     use HasTimesTamps;
     use ModelHelpers;
 
-    protected $table = 'replies';
+    const TABLE = 'replies';
+
+    protected $table = self::TABLE;
 
     protected $fillable = ['body'];
 
@@ -48,6 +50,6 @@ class Reply extends Model
 
     public function replyAbleRelation(): MorphTo
     {
-        return $this->morphTo('replyAbleRelation', 'replyAble_type', 'replyAble_id');
+        return $this->morphTo('replyAbleRelation', 'replyable_type', 'replyable_id');
     }
 }

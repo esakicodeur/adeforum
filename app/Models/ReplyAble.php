@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 interface ReplyAble
 {
-    public function subject(): string;
+    public function title(): string;
 
     /**
      * @return \App\Models\Reply[]
@@ -20,6 +20,8 @@ interface ReplyAble
     public function deleteReplies();
 
     public function repliesRelation(): MorphMany;
+
+    public function isConversationOld(): bool;
 
     public function replyAbleSubject(): string;
 }

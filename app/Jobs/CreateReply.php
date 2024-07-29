@@ -2,11 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
-use App\Models\ReplyAble;
 use App\Models\User;
+use App\Models\ReplyAble;
 use Illuminate\Bus\Queueable;
+use App\Http\Requests\CreateReplyRequest;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

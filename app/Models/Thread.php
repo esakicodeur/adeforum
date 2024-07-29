@@ -47,11 +47,6 @@ class Thread extends Model implements ReplyAble
         return Str::limit(strip_tags($this->body()), $limit);
     }
 
-    public function subject(): string
-    {
-
-    }
-
     public function replyAbleSubject(): string
     {
         return $this->title();
@@ -88,5 +83,10 @@ class Thread extends Model implements ReplyAble
         return $query->whereHas('tagsRelation', function ($query) use ($tag) {
             $query->where('tags.slug', $tag);
         });
+    }
+
+    public function isConversationOld(): bool
+    {
+
     }
 }
