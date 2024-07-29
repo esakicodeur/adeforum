@@ -81,7 +81,7 @@
                         <div class="grid mt-4">
                             {{-- Button --}}
                             <x-buttons.primary class="justify-self-end">
-                                {{ __('Commenter') }}
+                                {{ __('Répondre') }}
                             </x-buttons.primary>
                         </div>
                     </x-form>
