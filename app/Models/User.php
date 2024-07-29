@@ -19,6 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
     use ModelHelpers;
+    use Notifiable;
 
     const DEFAULT = 1;
     const MODERATOR = 2;
