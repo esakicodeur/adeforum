@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Mail\NewReplyEmail;
 use App\Models\Reply;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
