@@ -14,11 +14,15 @@ class Update extends Component
     public $replyId;
     public $replyOrigBody;
     public $replyNewBody;
+    public $author;
+    public $createdAt;
 
     public function mount(Reply $reply)
     {
         $this->replyId = $reply->id();
         $this->replyOrigBody = $reply->body();
+        $this->author = $reply->author();
+        $this->createdAt = $reply->created_at;
 
         $this->initialize($reply);
     }
