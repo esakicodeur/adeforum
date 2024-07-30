@@ -26,4 +26,11 @@ class ReplyController extends Controller
 
         return back()->with('success', 'J\'ai commenté !');
     }
+
+    public function redirect($id, $type)
+    {
+        $reply = Reply::where('replyable_id', $id)->where('replyable_type', $type)->firstOrFail();
+
+        return redirect('threads.show', [$reply->replyAble()->category->slug(), $reply->replyAble()->slug()]);
+    }
 }

@@ -14,7 +14,8 @@
             <tr>
                 <x-table.data>
                     <div>
-                        <a href="#">
+                        Une nouvelle réponse a été ajoutée à
+                        <a href="{{ route('replies.replyAble', [$notification->data['replyable_id'], $notification->data['replyable_type']]) }}" class="ml-2 font-bold text-blue-500">
                             {{ $notification->data['replyable_subject'] }}
                         </a>
                     </div>
