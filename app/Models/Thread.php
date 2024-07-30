@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\ReplyAble;
 use App\Traits\HasAuthor;
+use App\Traits\HasLikes;
 use App\Traits\HasReplies;
 use App\Traits\HasTags;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,9 +15,10 @@ use Illuminate\Support\Str;
 
 class Thread extends Model implements ReplyAble
 {
-    use HasFactory;
     use HasTags;
+    use HasLikes;
     use HasAuthor;
+    use HasFactory;
     use HasReplies;
 
     const TABLE = 'threads';
@@ -32,9 +34,10 @@ class Thread extends Model implements ReplyAble
     ];
 
     protected $with = [
-        'authorRelation',
         'category',
         'tagsRelation',
+        'likesRelation',
+        'authorRelation',
     ];
 
     public function category(): BelongsTo
