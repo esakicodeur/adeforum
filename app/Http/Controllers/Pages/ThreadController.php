@@ -78,7 +78,7 @@ class ThreadController extends Controller
         return redirect()->route('threads.index')->with('success', 'Sujet modifié !');
     }
 
-    public function subscribe(Request $request, Thread $thread)
+    public function subscribe(Request $request, Category $category, Thread $thread)
     {
         $this->authorize(ThreadPolicy::SUBSCRIBE, $thread);
 
@@ -88,7 +88,7 @@ class ThreadController extends Controller
             ->with('success', 'Vous êtes abonné à ce fil de discussion.');
     }
 
-    public function unsubscribe(Request $request, Thread $thread)
+    public function unsubscribe(Request $request, Category $category, Thread $thread)
     {
         $this->authorize(ThreadPolicy::UNSUBSCRIBE, $thread);
 

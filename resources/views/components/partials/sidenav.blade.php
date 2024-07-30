@@ -9,15 +9,30 @@
             </a>
         </div>
 
-        <div class="pb-4 space-y-4">
-            {{-- Subscribe to thread button --}}
-            <x-buttons.secondary>
-                {{ __('Abonnez-vous au fil de discussion') }}
-            </x-buttons.secondary>
-            <p class="text-sm text-gray-500">
-                Abonnez-vous pour être averti chaque fois que de nouvelles discussions sont créées dans le forum "Catégorie Un".
-            </p>
-        </div>
+        @auth
+            @if (request()->routeIs('threads.show'))
+                <div class="pb-4 space-y-4">
+
+                    @can(App\Policies\ThreadPolicy::UNSUBSCRIBE, $thread)
+                        {{-- Unsubscribe to thread button --}}
+                        <x-links.main href="{{ route('threads.unsubscribe', [$thread->category->slug(), $thread->slug()]) }}">
+                            {{ __('Se désabonner du fil de discussion') }}
+                        </x-links.main>
+                        <p class="text-sm text-gray-500">
+                            Se désabonner de ce fil de discussion
+                        </p>
+                    @elsecan(App\Policies\ThreadPolicy::SUBSCRIBE, $thread)
+                        {{-- Subscribe to thread button --}}
+                        <x-links.main href="{{ route('threads.subscribe', [$thread->category->slug(), $thread->slug()]) }}">
+                            {{ __('S\'abonner au fil de discussion') }}
+                        </x-links.main>
+                        <p class="text-sm text-gray-500">
+                            Abonnez-vous à ce fil de discussion
+                        </p>
+                    @endcan
+                </div>
+            @endif
+        @endauth
     </div>
 
     {{-- Categories --}}

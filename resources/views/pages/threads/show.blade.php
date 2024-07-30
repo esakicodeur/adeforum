@@ -1,12 +1,12 @@
 <x-guest-layout>
     <main class="grid grid-cols-4 gap-8 mt-8 wrapper">
 
-        <x-partials.sidenav />
+        <x-partials.sidenav :thread="$thread" />
 
         <section class="flex flex-col col-span-3 gap-y-4">
             <x-alerts.main />
 
-            <small class="text-sm text-gray-400">Sujets > {{ $category->name() }} > {{ $thread->title() }}</small>
+            <small class="text-sm text-gray-400">Discussion > {{ $category->name() }} > {{ $thread->title() }}</small>
 
             <article class="p-5 bg-white shadow">
                 <div class="grid grid-cols-8">
