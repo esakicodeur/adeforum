@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
 use App\Http\Requests\ThreadStoreRequest;
 use App\Jobs\CreateThread;
+use App\Jobs\SubscribeToSubscriptionAble;
+use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Jobs\UpdateThread;
 use App\Models\Category;
 use App\Models\Tag;
@@ -76,13 +78,23 @@ class ThreadController extends Controller
         return redirect()->route('threads.index')->with('success', 'Sujet modifié !');
     }
 
-    public function subscribe()
+    public function subscribe(Request $request, Thread $thread)
     {
+        $this->authorize(ThreadPolicy::SUBSCRIBE, $thread);
 
+        $this->dispatchSync(new SubscribeToSubscriptionAble($request->user(), $thread));
+
+        return redirect()->route('threads.show', [$thread->category->slug(), $thread->slug()])
+            ->with('success', 'Vous êtes abonné à ce fil de discussion.');
     }
 
-    public function unsubscribe()
+    public function unsubscribe(Request $request, Thread $thread)
     {
+        $this->authorize(ThreadPolicy::UNSUBSCRIBE, $thread);
 
+        $this->dispatchSync(new UnsubscribeFromSubscriptionAble($request->user(), $thread));
+
+        return redirect()->route('threads.show', [$thread->category->slug(), $thread->slug()])
+            ->with('success', 'Vous vous êtes désabonné de ce fil de discussion.');
     }
 }
