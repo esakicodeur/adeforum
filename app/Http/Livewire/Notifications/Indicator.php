@@ -10,12 +10,16 @@ class Indicator extends Component
 {
     public $hasNotifications;
 
+    protected $listeners = [
+        'markedAsRead' => 'setHasNotification',
+    ];
+
     public function render(): View
     {
         $this->hasNotifications = $this->setHasNotifications(Auth::user()->unreadNotifications()->count());
 
         return view('livewire.notifications.indicator', [
-            'hasNotifications' => $this->hasNotifications,
+            'hasNotification' => $this->hasNotifications,
         ]);
     }
 
