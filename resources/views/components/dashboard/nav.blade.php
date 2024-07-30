@@ -6,7 +6,7 @@
 
                 <!-- Logo -->
                 <div class="flex items-center w-36">
-                    <a href="{{ route('home') }}">
+                    <a href="{{ route('threads.index') }}">
                         <x-logos.main class="block w-auto h-12" />
                     </a>
                 </div>

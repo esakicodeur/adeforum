@@ -18,7 +18,7 @@ class NotificationSeeder extends Seeder
     {
         Reply::all()->each(function (Reply $reply) {
             $reply->author()->notifications()->create([
-                // 'id' => Str::uuid()->toString(),
+                'id' => Str::uuid()->toString(),
                 'type' => NewReplyNotification::class,
                 'data' => [
                     'type' => 'new_reply',

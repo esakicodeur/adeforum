@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Notifications;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class Count extends Component
 {

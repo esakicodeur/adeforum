@@ -22,7 +22,7 @@
                 </x-table.data>
                 <x-table.data>
                     <div>
-                        {{ $notification->created->diffForHumans() }}
+                        {{ $notification->created_at->diffForHumans() }}
                     </div>
                 </x-table.data>
                 <x-table.data class="text-center">

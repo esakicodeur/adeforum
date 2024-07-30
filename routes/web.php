@@ -58,7 +58,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      * Route: dashboard.notifications*
     */
     Route::group(['prefix' => 'notifications', 'as' => 'notifications.'], function () {
-        Route::get('/notifications', [NotificationController::class, 'index'])->name('index');
+        Route::get('/', [NotificationController::class, 'index'])->name('index');
     });
 });
 
