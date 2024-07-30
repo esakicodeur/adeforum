@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ReplyAble;
 use App\Traits\HasAuthor;
 use App\Traits\HasTimesTamps;
 use App\Traits\ModelHelpers;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
-class Reply extends Model
+final class Reply extends Model
 {
     use HasFactory;
     use HasAuthor;
