@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Reply;
 use App\Notifications\NewReplyNotification;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class NotificationSeeder extends Seeder
 {
@@ -17,13 +18,14 @@ class NotificationSeeder extends Seeder
     {
         Reply::all()->each(function (Reply $reply) {
             $reply->replyAble()->author()->notifications()->create([
+                // 'id' => Str::uuid()->toString(),
                 'type' => NewReplyNotification::class,
                 'data' => [
                     'type' => 'new_reply',
                     'reply' => $reply->id(),
                     'replyable_id' => $reply->replyable_id,
                     'replyable_type' => $reply->replyable_type,
-                    'replyable_subject' => $reply->replyAble()->replyAbleSubject()
+                    'replyable_subject' => $reply->replyAble()->replyAbleSubject(),
                 ],
 
                 'created_at' => $reply->createdAt(),
