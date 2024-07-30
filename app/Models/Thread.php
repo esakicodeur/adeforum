@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use App\Models\ReplyAble;
+use App\Models\SubscriptionAble;
 use App\Traits\HasAuthor;
 use App\Traits\HasLikes;
 use App\Traits\HasReplies;
+use App\Traits\HasSubscriptions;
 use App\Traits\HasTags;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,13 +15,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
-class Thread extends Model implements ReplyAble
+class Thread extends Model implements ReplyAble, SubscriptionAble
 {
     use HasTags;
     use HasLikes;
     use HasAuthor;
     use HasFactory;
     use HasReplies;
+    use HasSubscriptions;
 
     const TABLE = 'threads';
 
