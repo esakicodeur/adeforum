@@ -29,13 +29,19 @@
 
                         <div class="flex justify-between">
 
-                            {{-- Likes --}}
-                            <div class="flex space-x-5 text-gray-500">
+                            <div class="flex space-x-5 font-bold">
+                                {{-- Likes --}}
                                 <livewire:like-thread :thread="$thread" />
+
+                                {{-- Views Count --}}
+                                <div class="flex items-center space-x-2">
+                                    <x-heroicon-o-eye class="w-5 h-5 text-blue-500" />
+                                    <span class="text-xs font-bold">{{ views($thread)->count() }}</span>
+                                </div>
                             </div>
 
                             {{-- Date Posted --}}
-                            <div class="flex items-center text-xs text-gray-500">
+                            <div class="flex items-center text-xs font-bold">
                                 <x-heroicon-o-clock class="w-4 h-4 mr-1" />
                                 Publié: {{ $thread->created_at->diffForHumans() }}
                             </div>

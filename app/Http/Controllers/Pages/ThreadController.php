@@ -50,6 +50,12 @@ class ThreadController extends Controller
 
     public function show(Category $category, Thread $thread)
     {
+        $expireAt = now()->addHours(12);
+
+        views($thread)
+            ->cooldown($expireAt)
+            ->record();
+
         return view('pages.threads.show', compact('thread', 'category'));
     }
 
