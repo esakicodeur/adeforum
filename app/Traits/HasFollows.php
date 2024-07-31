@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Session;
 
 trait HasFollows
 {
@@ -25,9 +26,11 @@ trait HasFollows
     public function toggleFollow(User $user)
     {
         if ($this->isFollowing($user)) {
+            Session::flash('success', "Vous vous êtes désabonné de $user->name");
             return $this->unfollow($user);
         }
 
+        Session::flash('success', "Vous vous êtes abonné à $user->name");
         return $this->follow($user);
     }
 
