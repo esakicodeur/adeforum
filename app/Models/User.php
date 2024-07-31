@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasFollows;
 use App\Traits\HasTimesTamps;
 use App\Traits\ModelHelpers;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -17,6 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
+    use HasFollows;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
@@ -93,6 +95,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function name(): string
     {
         return $this->name;
+    }
+
+    public function userName(): string
+    {
+        return $this->username;
     }
 
     public function emailAddress(): string

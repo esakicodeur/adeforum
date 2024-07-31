@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\NotificationController;
+use App\Http\Controllers\Pages\FollowController;
 use App\Http\Controllers\Pages\ProfileController;
 use App\Http\Controllers\Pages\ReplyController;
 use App\Http\Controllers\Pages\TagController;
@@ -68,6 +69,9 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
 // Profile
 Route::get('user/{user:username}', [ProfileController::class, 'show'])->name('profile');
+
+// Follows
+Route::get('profile/user/{user:username}/follow', [FollowController::class, 'store'])->name('follow');
 
 Route::get('dashboard/users', [PageController::class, 'users'])->name('users');
 
