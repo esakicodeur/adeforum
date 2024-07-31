@@ -11,10 +11,26 @@
                 <span class="text-gray-600">{{ $user->createdAt() }}</span>
             </div>
 
-            {{-- Follow Buttons --}}
-            <div class="">
-
-            </div>
+            @auth
+                @unless (auth()->user()->is($user))
+                    <div class="">
+                        @if (auth()->user()->isFollowing($user))
+                            {{-- Follow Buttons --}}
+                            <x-form action="{{ route('follow', $user) }}">
+                                <x-jet-button>
+                                    {{ __('Unfollow') }}
+                                </x-jet-button>
+                            </x-form>
+                        @else
+                            <x-form action="{{ route('follow', $user) }}">
+                                <x-jet-button>
+                                    {{ __('Follow') }}
+                                </x-jet-button>
+                            </x-form>
+                        @endif
+                    </div>
+                @endunless
+            @endauth
         </aside>
 
         <section class="flex flex-col col-span-3 gap-y-4">

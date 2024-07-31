@@ -71,7 +71,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 Route::get('user/{user:username}', [ProfileController::class, 'show'])->name('profile');
 
 // Follows
-Route::get('profile/user/{user:username}/follow', [FollowController::class, 'store'])->name('follow');
+Route::post('profile/user/{user:username}/follow', [FollowController::class, 'store'])->name('follow');
 
 Route::get('dashboard/users', [PageController::class, 'users'])->name('users');
 
