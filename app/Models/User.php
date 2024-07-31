@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Traits\HasTimesTamps;
 use App\Traits\ModelHelpers;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -20,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use ModelHelpers;
     use Notifiable;
+    use HasTimesTamps;
 
     const DEFAULT = 1;
     const MODERATOR = 2;
@@ -105,5 +108,49 @@ class User extends Authenticatable implements MustVerifyEmail
     public function type(): int
     {
         return (int) $this->type;
+    }
+
+    public function threads()
+    {
+        return $this->threadsRelation;
+    }
+
+    public function latestThreads(int $amount = 5)
+    {
+        return $this->threadsRelation()->latest()->limit($amount)->get();
+    }
+
+    public function deleteThreads()
+    {
+        foreach ($this->threads() as $thread) {
+            $thread->delete();
+        }
+    }
+
+    public function threadsRelation(): HasMany
+    {
+        return $this->hasMany(Thread::class, 'author_id');
+    }
+
+    public function countThreads(): int
+    {
+        return $this->threadsRelation()->count();
+    }
+
+    public function replies()
+    {
+        return $this->replyAble;
+    }
+
+    public function latestReplies(int $amount = 10)
+    {
+        return $this->replyAble()->latest()->limit($amount)->get();
+    }
+
+    public function deleteReplies()
+    {
+        foreach ($this->replyAble()->get() as $reply) {
+            $reply->delete();
+        }
     }
 }
