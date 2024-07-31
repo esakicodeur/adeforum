@@ -26,11 +26,11 @@ trait HasFollows
     public function toggleFollow(User $user)
     {
         if ($this->isFollowing($user)) {
-            Session::flash('success', "Vous vous êtes désabonné de $user->name");
+            Session::flash('success', "Vous vous êtes désabonné(e) de $user->name");
             return $this->unfollow($user);
         }
 
-        Session::flash('success', "Vous vous êtes abonné à $user->name");
+        Session::flash('success', "Vous vous êtes abonné(e) à $user->name");
         return $this->follow($user);
     }
 

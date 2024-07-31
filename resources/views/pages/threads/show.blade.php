@@ -9,7 +9,7 @@
             <small class="text-sm text-gray-400">Discussion > {{ $category->name() }} > {{ $thread->title() }}</small>
 
             <article class="p-5 bg-white shadow">
-                <div class="grid grid-cols-8">
+                <div class="relative grid grid-cols-8">
 
                     {{-- Avatar --}}
                     <div class="col-span-1">
@@ -17,7 +17,7 @@
                     </div>
 
                     {{-- Thread --}}
-                    <div class="col-span-7 space-y-6">
+                    <div class="relative col-span-7 space-y-6">
                         <div class="space-y-3">
                             <h2 class="text-xl tracking-wide hover:text-blue-400">
                                 {{ $thread->title() }}
@@ -39,13 +39,21 @@
                                 <x-heroicon-o-clock class="w-4 h-4 mr-1" />
                                 Publié: {{ $thread->created_at->diffForHumans() }}
                             </div>
+                        </div>
+                    </div>
 
+                    {{-- Edit Button --}}
+                    <div class="absolute top-0 right-2">
+                        <div class="flex space-x-2">
+                            @can(App\Policies\ThreadPolicy::UPDATE, $thread)
+                            <x-links.secondary href="{{ route('threads.edit', $thread->slug()) }}">
+                                Edit
+                            </x-links.secondary>
+                            @endcan
 
-                            {{-- Reply --}}
-                            <a href="" class="flex items-center space-x-2 text-gray-500">
-                                <x-heroicon-o-reply class="w-5 h-5" />
-                                <span class="text-sm">Répondre</span>
-                            </a>
+                            @can(App\Policies\ThreadPolicy::DELETE, $thread)
+                            <livewire:thread.delete :thread="$thread" :key="$thread->id()" />
+                            @endcan
                         </div>
                     </div>
                 </div>
