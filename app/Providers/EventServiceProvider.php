@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\ReplyWasCreated;
+use App\Events\ThreadWasCreated;
 use App\Listeners\sendNewReplyNotification;
+use App\Listeners\sendNewThreadNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ReplyWasCreated::class => [
             sendNewReplyNotification::class,
+        ],
+        ThreadWasCreated::class => [
+            sendNewThreadNotification::class,
         ],
     ];
 

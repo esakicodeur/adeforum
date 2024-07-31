@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\ThreadWasCreated;
 use App\Http\Requests\ThreadStoreRequest;
 use App\Models\Thread;
 use App\Models\User;
@@ -66,6 +67,8 @@ class CreateThread implements ShouldQueue
         $thread->authoredBy($this->author);
         $thread->syncTags($this->tags);
         $thread->save();
+
+        event(new ThreadWasCreated($thread));
 
         return $thread;
     }
