@@ -1,10 +1,17 @@
 <x-guest-layout>
     <main class="grid grid-cols-4 gap-8 mt-8 wrapper">
         <aside class="flex flex-col items-center h-full p-4 space-y-4 bg-white shadow">
+
             <a href="{{ route('profile', $user) }}" class="flex flex-col items-center text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
                 <img class="object-cover w-32 h-32 rounded" src="{{ $user->profile_photo_url }}" alt="{{ $user->name() }}">
                 <span class="mt-2 text-sm text-gray-500">{{ $user->name() }}</span>
             </a>
+
+            <div>
+                <h2 class="font-semibold">
+                    {{ $user->rank() }}
+                </h2>
+            </div>
 
             <div class="text-xs">
                 <h2 class="font-bold text-blue-500">Date d'inscription:</h2>

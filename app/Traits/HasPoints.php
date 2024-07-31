@@ -28,4 +28,29 @@ trait HasPoints
     {
         return (new Point())->addAwards($this, $amount, $message);
     }
+
+    public function rank()
+    {
+        $currentPoints = $this->currentPoints();
+
+        if ($currentPoints <= 100) {
+            return 'Recruit';
+        }
+
+        if ($currentPoints <= 500) {
+            return 'Corporal';
+        }
+
+        if ($currentPoints <= 1000) {
+            return 'Sergeant';
+        }
+
+        if ($currentPoints <= 4000) {
+            return 'First Sergeant';
+        }
+
+        if ($currentPoints <= 10000) {
+            return 'Master Sergeant';
+        }
+    }
 }
