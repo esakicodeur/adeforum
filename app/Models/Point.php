@@ -48,7 +48,7 @@ class Point extends Model
         $award->current_points = $this->getCurrentPoints($pointable) + $amount;
         $award->message = $message;
 
-        $pointable->awards()->save();
+        $pointable->awards()->save($award);
 
         return $award;
     }

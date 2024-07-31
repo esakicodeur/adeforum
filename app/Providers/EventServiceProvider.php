@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Events\ReplyWasCreated;
 use App\Events\ThreadWasCreated;
+use App\Listeners\AwardPointsForCreatingReply;
+use App\Listeners\AwardPointsForCreatingThread;
 use App\Listeners\sendNewReplyNotification;
 use App\Listeners\sendNewThreadNotification;
 use Illuminate\Auth\Events\Registered;
@@ -24,9 +26,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         ReplyWasCreated::class => [
             sendNewReplyNotification::class,
+            AwardPointsForCreatingReply::class,
         ],
         ThreadWasCreated::class => [
             sendNewThreadNotification::class,
+            AwardPointsForCreatingThread::class,
         ],
     ];
 
